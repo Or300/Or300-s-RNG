@@ -14,6 +14,7 @@ body {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
 }
 
 h1 {
@@ -39,9 +40,27 @@ button:hover {
     background-color: #45a049;
 }
 
-#randomNumber {
+#randomNumber, #itemName {
     margin-top: 20px;
     font-size: 24px;
     font-weight: bold;
     color: #333;
+}
+
+#inventory {
+    margin-top: 30px;
+    font-size: 18px;
+    text-align: left;
+}
+
+#inventoryList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#inventoryList li {
+    padding: 5px;
+    background-color: #f2f2f2;
+    margin: 5px 0;
+    border-radius: 5px;
 }
