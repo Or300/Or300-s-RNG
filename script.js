@@ -1,26 +1,27 @@
-// Function to generate a random item based on the random number
+// Function to generate a random item with a delay
 function generateRandomItem() {
-    // Generate a random number between 1 and 16
-    let randomNum = Math.floor(Math.random() * 16) + 1;
-    let itemName = "";
+    document.getElementById('randomNumber').textContent = "Rolling...";
+    document.getElementById('itemName').textContent = "Rolling...";
 
-    // Determine item category based on random number
-    if (randomNum >= 1 && randomNum <= 4) {
-        itemName = "Common";
-    } else if (randomNum >= 5 && randomNum <= 7) {
-        itemName = "Uncommon";
-    } else if (randomNum >= 8 && randomNum <= 12) {
-        itemName = "Rare";
-    } else if (randomNum >= 13 && randomNum <= 16) {
-        itemName = "Epic";
-    }
+    setTimeout(() => {
+        let randomNum = Math.floor(Math.random() * 16) + 1;
+        let itemName = "";
 
-    // Update the number and item name on the page
-    document.getElementById('randomNumber').textContent = `Number: ${randomNum}`;
-    document.getElementById('itemName').textContent = `Item: ${itemName}`;
+        if (randomNum >= 1 && randomNum <= 4) {
+            itemName = "Common";
+        } else if (randomNum >= 5 && randomNum <= 7) {
+            itemName = "Uncommon";
+        } else if (randomNum >= 8 && randomNum <= 12) {
+            itemName = "Rare";
+        } else if (randomNum >= 13 && randomNum <= 16) {
+            itemName = "Epic";
+        }
 
-    // Add the item to the inventory
-    addItemToInventory(itemName);
+        document.getElementById('randomNumber').textContent = `Number: ${randomNum}`;
+        document.getElementById('itemName').textContent = `Item: ${itemName}`;
+
+        addItemToInventory(itemName);
+    }, 1000); // Wait 1 second before revealing the result
 }
 
 // Function to add an item to the inventory list
@@ -30,3 +31,8 @@ function addItemToInventory(item) {
     listItem.textContent = item;
     inventoryList.appendChild(listItem);
 }
+
+// Toggle inventory visibility
+document.getElementById('toggleInventory').addEventListener('click', function () {
+    document.getElementById('inventory').classList.toggle('hidden');
+});
