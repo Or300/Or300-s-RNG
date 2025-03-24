@@ -10,7 +10,9 @@ function generateRandomItem() {
         document.getElementById('randomNumber').textContent = `Number: ${randomNum}`;
         document.getElementById('itemName').textContent = `Item: ${itemName}`;
 
-        addItemToInventory(itemName);
+        if (itemName !== "Nothing") {
+            addItemToInventory(itemName);
+        }
     }, 1000); // Wait 1 second before revealing the result
 }
 
@@ -28,17 +30,23 @@ function getItemFromNumber(num) {
     if (num >= 8 && num <= 12) return "Rare";
     if (num >= 13 && num <= 16) return "Epic";
     if (num >= 17 && num <= 24) return "Amethyst";
-    if (num >= 25 && num <= 32) return "Golden";
-    if (num >= 33 && num <= 44) return "Emerald";
-    if (num >= 45 && num <= 100) return "Sapphire";
-    if (num >= 101 && num <= 250) return "Ruby";
-    if (num >= 251 && num <= 500) return "Diamond";
-    if (num >= 501 && num <= 1000) return "Obsidian";
-    if (num >= 1001 && num <= 2000) return "Dragonstone";
-    if (num >= 2001 && num <= 5000) return "Celestial Crystal";
-    if (num >= 5001 && num <= 7500) return "Dark Matter Shard";
-    if (num >= 7501 && num <= 9999) return "Ethereal Relic";
-    return "Godly Artifact"; // 10,000 is the rarest
+
+    // Everything beyond Amethyst needs a specific number
+    const exactMatches = {
+        25: "Golden",
+        32: "Emerald",
+        44: "Sapphire",
+        100: "Ruby",
+        250: "Diamond",
+        500: "Obsidian",
+        1000: "Dragonstone",
+        2000: "Celestial Crystal",
+        5000: "Dark Matter Shard",
+        7500: "Ethereal Relic",
+        10000: "Godly Artifact"
+    };
+
+    return exactMatches[num] || "Nothing";
 }
 
 // Function to add an item to the inventory list
