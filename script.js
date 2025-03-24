@@ -4,7 +4,7 @@ function generateRandomItem() {
     document.getElementById('itemName').textContent = "Rolling...";
 
     setTimeout(() => {
-        let randomNum = Math.floor(Math.random() * 10000) + 1;
+        let randomNum = getWeightedRandom();
         let itemName = getItemFromNumber(randomNum);
 
         document.getElementById('randomNumber').textContent = `Number: ${randomNum}`;
@@ -12,6 +12,13 @@ function generateRandomItem() {
 
         addItemToInventory(itemName);
     }, 1000); // Wait 1 second before revealing the result
+}
+
+// Function to generate a weighted random number
+function getWeightedRandom() {
+    let base = Math.random();
+    return Math.floor(Math.pow(base, 2.5) * 10000) + 1; 
+    // The exponent (2.5) controls how rare high numbers are
 }
 
 // Function to determine item based on number range
@@ -23,8 +30,6 @@ function getItemFromNumber(num) {
     if (num >= 17 && num <= 24) return "Amethyst";
     if (num >= 25 && num <= 32) return "Golden";
     if (num >= 33 && num <= 44) return "Emerald";
-
-    // Continue creating new tiers until 10,000
     if (num >= 45 && num <= 100) return "Sapphire";
     if (num >= 101 && num <= 250) return "Ruby";
     if (num >= 251 && num <= 500) return "Diamond";
